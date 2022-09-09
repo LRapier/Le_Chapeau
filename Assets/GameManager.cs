@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     void SpawnPlayer()
     {
         GameObject playerObj = PhotonNetwork.Instantiate(playerPrefabLocation, spawnPoints[Random.Range(0, spawnPoints.Length)].position, Quaternion.identity);
+        playerObj.transform.eulerAngles = new Vector3(playerObj.transform.eulerAngles.x, playerObj.transform.eulerAngles.y + 45, playerObj.transform.eulerAngles.z);
         PlayerController playerScript = playerObj.GetComponent<PlayerController>();
         playerScript.photonView.RPC("Initialize", RpcTarget.All, PhotonNetwork.LocalPlayer);
     }
